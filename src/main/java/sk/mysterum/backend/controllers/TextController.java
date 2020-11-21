@@ -3,6 +3,7 @@ package sk.mysterum.backend.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sk.mysterum.backend.exception.WrongPasswordException;
+import sk.mysterum.backend.model.Day;
 import sk.mysterum.backend.model.Response;
 import sk.mysterum.backend.model.TextModel;
 import sk.mysterum.backend.services.TextService;
@@ -25,13 +26,13 @@ public class TextController {
     }
 
     @PostMapping("/db")
-    public TextModel putTextToDatabase(@RequestBody String text, @RequestBody String password, @RequestBody Integer day) throws WrongPasswordException {
+    public TextModel putTextToDatabase(@RequestBody Day day) throws WrongPasswordException {
 
-        if (!PASSWORD.equals(password)){
+        if (!PASSWORD.equals(day.getPassword())){
             throw new WrongPasswordException();
         }
 
 
-        return srvc.addDay(day, text);
+        return srvc.addDay(day.getDay(), day.getBody());
     }
 }
