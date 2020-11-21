@@ -32,7 +32,7 @@ public class TextController {
             throw new WrongPasswordException();
         }
 
-
+        srvc.deleteDay(day.getDay());
         return srvc.addDay(day.getDay(), day.getBody());
     }
 }

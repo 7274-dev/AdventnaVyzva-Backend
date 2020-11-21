@@ -27,4 +27,8 @@ public class TextService {
 
         return repository.save(model);
     }
+
+    public void deleteDay(Integer day){
+        repository.deleteByDay(day);
+    }
 }
