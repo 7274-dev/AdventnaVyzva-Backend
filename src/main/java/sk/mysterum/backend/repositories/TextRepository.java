@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TextRepository extends JpaRepository<TextModel, Long> {
     public List<TextModel> findByDay(Integer day);
-    public void deleteByDay(Integer day);
+    public void deleteAllByDayEquals(Integer day);
 }

@@ -6,10 +6,6 @@ import org.springframework.stereotype.Service;
 import sk.mysterum.backend.model.TextModel;
 import sk.mysterum.backend.repositories.TextRepository;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -29,6 +25,7 @@ public class TextService {
     }
 
     public void deleteDay(Integer day){
-        repository.deleteByDay(day);
+        repository.deleteAllByDayEquals(day);
+
     }
 }
