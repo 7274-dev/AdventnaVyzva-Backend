@@ -21,4 +21,11 @@ public class TextExceptionHandler {
         return new ResponseEntity<Response>(new Response(e.getMessage()), HttpStatus.UNAUTHORIZED);
 
     }
+    @ExceptionHandler(IndexOutOfBoundsException.class)
+    public ResponseEntity<Response> handleIndexOutOfBoundsException(IndexOutOfBoundsException e){
+
+        return new ResponseEntity<Response>(new Response("No data for this day"), HttpStatus.NO_CONTENT);
+
+    }
+
 }

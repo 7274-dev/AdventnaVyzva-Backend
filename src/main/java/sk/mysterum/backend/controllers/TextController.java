@@ -21,8 +21,7 @@ public class TextController {
     @GetMapping("/text")
     public Response getTextForDay(@RequestParam int day){
 
-        return new Response(srvc.getTextByDay(day).get(0).getText());
-
+            return new Response(srvc.getTextByDay(day).get(0).getText());
     }
 
     @PostMapping("/db")
