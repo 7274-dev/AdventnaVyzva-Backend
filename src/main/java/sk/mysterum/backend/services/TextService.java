@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @Service
 public class TextService {
-    private final String TEXT_PATH = "C:/Users/jtule/Desktop/";
+    private final String TEXT_PATH = "~/Web-Data";
 
     public String getTextForDay(int day){
 
