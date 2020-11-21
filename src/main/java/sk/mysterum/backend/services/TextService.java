@@ -1,41 +1,30 @@
 package sk.mysterum.backend.services;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.mysterum.backend.model.TextModel;
+import sk.mysterum.backend.repositories.TextRepository;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class TextService {
-    private final String TEXT_PATH = "/home/dev/Web-Data/";
+    @Autowired
+    private TextRepository repository;
+    public List<TextModel> getTextByDay(Integer day){
+        return repository.findByDay(day);
+    }
+    public TextModel addDay(Integer day, String content){
 
-    public String getTextForDay(int day){
+        TextModel model = new TextModel();
+        model.setDay(day);
+        model.setText(content);
 
-        File file = new File(TEXT_PATH + day + ".txt");
-        try {
-
-            // Create tools for reading files
-            BufferedReader read = new BufferedReader(new FileReader(file));
-            StringBuilder data = new StringBuilder();
-            String line = read.readLine();
-
-
-            while (line != null){
-                data.append(line);
-                line = read.readLine();
-            }
-            // Return built contents of file
-            return data.toString();
-
-
-        } catch (IOException IOE) {
-
-            IOE.printStackTrace();
-            return "No data for day " + day + " found";
-
-        }
+        return repository.save(model);
     }
 }
