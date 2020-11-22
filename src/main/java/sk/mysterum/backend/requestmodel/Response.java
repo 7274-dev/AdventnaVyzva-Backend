@@ -1,4 +1,4 @@
-package sk.mysterum.backend.model;
+package sk.mysterum.backend.requestmodel;
 
 public class Response {
     private String response;

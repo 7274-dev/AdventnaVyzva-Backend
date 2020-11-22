@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import sk.mysterum.backend.exception.WrongPasswordException;
-import sk.mysterum.backend.model.Response;
+import sk.mysterum.backend.requestmodel.Response;
 
 @RestControllerAdvice
 public class TextExceptionHandler {

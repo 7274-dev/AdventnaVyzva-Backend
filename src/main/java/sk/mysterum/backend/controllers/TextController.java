@@ -3,8 +3,8 @@ package sk.mysterum.backend.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sk.mysterum.backend.exception.WrongPasswordException;
-import sk.mysterum.backend.model.Day;
-import sk.mysterum.backend.model.Response;
+import sk.mysterum.backend.requestmodel.Day;
+import sk.mysterum.backend.requestmodel.Response;
 import sk.mysterum.backend.model.TextModel;
 import sk.mysterum.backend.services.TextService;
 
