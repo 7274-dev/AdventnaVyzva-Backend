@@ -24,7 +24,7 @@ public class TextExceptionHandler {
     @ExceptionHandler(IndexOutOfBoundsException.class)
     public ResponseEntity<Response> handleIndexOutOfBoundsException(IndexOutOfBoundsException e){
 
-        return new ResponseEntity<Response>(new Response("No data for this day"), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Response>(new Response("No data for this day"), HttpStatus.GONE);
 
     }
 
