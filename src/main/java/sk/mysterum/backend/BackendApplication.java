@@ -2,13 +2,17 @@ package sk.mysterum.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import sk.mysterum.backend.services.MailService;
+
+import javax.mail.MessagingException;
 
 @SpringBootApplication
 public class BackendApplication {
 
 	private static boolean isFirstTime = true;
+	private static MailService msg = new MailService();
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws MessagingException {
 
 
 		if (isFirstTime){
@@ -41,8 +45,8 @@ public class BackendApplication {
 					"|_____/ |_______)  \\/  ");
 			isFirstTime = false;
 		}
-		SpringApplication.run(BackendApplication.class, args);
-
+		//SpringApplication.run(BackendApplication.class, args);
+		msg.sendMessage("jtulek@at-rt.com", null, "Jakub", 1);
 
 	}
 

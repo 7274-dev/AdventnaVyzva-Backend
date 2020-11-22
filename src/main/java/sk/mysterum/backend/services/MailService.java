@@ -14,8 +14,9 @@ import java.util.Properties;
 
 @Service
 public class MailService {
-    private final String FROM = "";
-    private final String HOST = "loclahost";
+    private final String FROM = "waldowaldasxx@gmail.com";
+    private final String HOST = "localhost";
+
 
 
     private Message createMessage(String to, String locationToFile, String personName, Integer day) throws MessagingException{
@@ -36,11 +37,11 @@ public class MailService {
         multipart.addBodyPart(messageBodyPart);
 
 
-        messageBodyPart = new MimeBodyPart();
-        DataSource source = new FileDataSource(locationToFile);
-        messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(personName+ " " + day + ".png");
-        multipart.addBodyPart(messageBodyPart);
+//        messageBodyPart = new MimeBodyPart();
+//        DataSource source = new FileDataSource(locationToFile);
+//        messageBodyPart.setDataHandler(new DataHandler(source));
+//        messageBodyPart.setFileName(personName+ " " + day + ".png");
+//        multipart.addBodyPart(messageBodyPart);
 
         message.setContent(multipart);
         return message;
@@ -48,5 +49,7 @@ public class MailService {
 
     public void sendMessage(String to, String locationToFile, String personName, Integer day) throws MessagingException {
        Message message = createMessage(to, locationToFile, personName, day);
+       Transport.send(message);
+        System.out.println("Message Sent");
     }
 }
