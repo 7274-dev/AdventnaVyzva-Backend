@@ -48,5 +48,6 @@ public class UserController {
         if (service.userExists(userName)) {
             throw new UserAlreadyExistsException();
         }
+        return null;
     }
 }

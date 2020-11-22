@@ -1,6 +1,7 @@
 package sk.mysterum.backend.services;
 
 import org.springframework.stereotype.Service;
+import sk.mysterum.backend.mail.SMTPAuthentication;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -15,7 +16,7 @@ import java.util.Properties;
 @Service
 public class MailService {
     private final String FROM = "waldowaldasxx@gmail.com";
-    private final String HOST = "localhost";
+    private final String HOST = "smtp.gmail.com";
 
 
 
@@ -24,7 +25,12 @@ public class MailService {
         // Set up mail server and get default session object
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", HOST);
-        Session session = Session.getDefaultInstance(properties);
+        properties.setProperty("mail.smtp.port", "587");
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.starttls.enable", "true");
+
+        Authenticator auth = new SMTPAuthentication(FROM, "9XgNMvLtte8SAmR");
+        Session session = Session.getDefaultInstance(properties, auth);
 
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(FROM));
@@ -52,4 +58,5 @@ public class MailService {
        Transport.send(message);
         System.out.println("Message Sent");
     }
+
 }
