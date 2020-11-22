@@ -3,6 +3,7 @@ package sk.mysterum.backend.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
+import sk.mysterum.backend.exception.UserAlreadyExistsException;
 import sk.mysterum.backend.exception.UserDoesNotExistException;
 import sk.mysterum.backend.exception.WindowAlreadyOpenedException;
 import sk.mysterum.backend.requestmodel.GenericResponse;
@@ -13,7 +14,7 @@ import sk.mysterum.backend.services.UserService;
 import javax.naming.directory.InvalidAttributeIdentifierException;
 import java.util.List;
 
-@RestController("/user")
+@RestController
 public class UserController {
     @Autowired
     private UserService service;
@@ -24,8 +25,12 @@ public class UserController {
     }
 
     @GetMapping("/windows")
-    public GenericResponse<List<Integer>> getWindowsOpened(@RequestParam String userName) {
-        return new GenericResponse<>(service.getOpenedWindows(userName));
+    public GenericResponse<List<Integer>> getWindowsOpened(@RequestParam String userName) throws UserDoesNotExistException {
+        List<Integer> openedWindows = service.getOpenedWindows(userName);
+        if (openedWindows == null) {
+            throw new UserDoesNotExistException();
+        }
+        return new GenericResponse<>(openedWindows);
     }
 
     @PostMapping("/openwindow")
@@ -36,5 +41,12 @@ public class UserController {
 
         service.openWindow(window.getUserName(), window.getDay());
         return new Response("Window opened");
+    }
+
+    @PostMapping("/add")
+    public Response addUser(@RequestBody String userName) throws UserAlreadyExistsException {
+        if (service.userExists(userName)) {
+            throw new UserAlreadyExistsException();
+        }
     }
 }

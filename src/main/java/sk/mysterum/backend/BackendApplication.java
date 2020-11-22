@@ -2,10 +2,9 @@ package sk.mysterum.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import sk.mysterum.backend.services.MailService;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import javax.mail.MessagingException;
-
+@EnableJpaRepositories
 @SpringBootApplication
 public class BackendApplication {
 

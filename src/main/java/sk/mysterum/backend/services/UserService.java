@@ -1,5 +1,6 @@
 package sk.mysterum.backend.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.mysterum.backend.exception.UserAlreadyExistsException;
 import sk.mysterum.backend.exception.UserDoesNotExistException;
@@ -15,7 +16,9 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
     private OpenedDayWindowRepository windowRepository;
 
     private List<Integer> windowToInteger(List<OpenedDayWindowModel> windows) {
