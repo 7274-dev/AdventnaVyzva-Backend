@@ -45,8 +45,8 @@ public class BackendApplication {
 					"|_____/ |_______)  \\/  ");
 			isFirstTime = false;
 		}
-		//SpringApplication.run(BackendApplication.class, args);
-		msg.sendMessage("jtulek@at-rt.com", null, "Jakub", 1);
+		SpringApplication.run(BackendApplication.class, args);
+		//msg.sendMessage("jtulek@at-rt.com", null, "Jakub", 1);
 
 	}
 
