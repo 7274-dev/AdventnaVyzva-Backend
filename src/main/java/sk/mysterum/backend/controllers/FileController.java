@@ -17,8 +17,8 @@ public class FileController {
     @Autowired
     FileService fileService;
 
-    @GetMapping("/")
-    public String index(){return "upload";}
+//    @GetMapping("/")
+//    public String index(){return "upload";}
 
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("File") MultipartFile file, RedirectAttributes redirectAttributes) throws FileAlreadyExistsException {
