@@ -15,6 +15,7 @@ import javax.naming.directory.InvalidAttributeIdentifierException;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService service;

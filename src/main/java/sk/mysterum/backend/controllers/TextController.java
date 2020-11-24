@@ -11,16 +11,15 @@ import sk.mysterum.backend.services.TextService;
 
 
 @RestController
+@CrossOrigin
 public class TextController {
-
-    public static final String PASSWORD = "KUBOJESUPER";
-
     @Autowired
     private TextService srvc;
 
-    @GetMapping("/text")
-    public Response getTextForDay(@RequestParam int day){
+    public static final String PASSWORD = "KUBOJESUPER";
 
+    @GetMapping("/text")
+    public Response getTextForDay(@RequestParam int day) {
             return new Response(srvc.getTextByDay(day).get(0).getText());
     }
 
