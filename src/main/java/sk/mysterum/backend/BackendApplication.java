@@ -1,11 +1,14 @@
 package sk.mysterum.backend;
 
+import org.aspectj.weaver.ast.Test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import sk.mysterum.backend.services.MailService;
 
 import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 @EnableJpaRepositories
 @SpringBootApplication
@@ -48,7 +51,12 @@ public class BackendApplication {
 			isFirstTime = false;
 		}
 		//SpringApplication.run(BackendApplication.class, args);
-		
+		String path = Test.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		try {
+			String decodedPath = URLDecoder.decode(path, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 
 	}
 
