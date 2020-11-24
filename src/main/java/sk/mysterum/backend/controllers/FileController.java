@@ -19,7 +19,7 @@ public class FileController {
 //    public String index(){return "upload";}
 
     @PostMapping("/upload")
-    public String uploadFile(@RequestParam("File") MultipartFile file, RedirectAttributes redirectAttributes) throws FileAlreadyExistsException {
+    public String uploadFile(@RequestPart ("File") MultipartFile file, RedirectAttributes redirectAttributes) throws FileAlreadyExistsException {
 
         fileService.uploadFile(file);
         return "File uploaded";
