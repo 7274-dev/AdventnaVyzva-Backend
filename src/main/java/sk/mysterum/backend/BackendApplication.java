@@ -47,7 +47,7 @@ public class BackendApplication {
 					"|_____/ |_______)  \\/  ");
 			isFirstTime = false;
 		}
-		//SpringApplication.run(BackendApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 		
 
 	}
