@@ -24,8 +24,8 @@ public class FileService {
 
     public Boolean uploadFile(MultipartFile file) throws FileAlreadyExistsException {
         try{
-
-            Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(file.getOriginalFilename()));
+            String filePath = file.getResource().getFile().getPath();
+            Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(filePath));
             Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
             return true;
             
