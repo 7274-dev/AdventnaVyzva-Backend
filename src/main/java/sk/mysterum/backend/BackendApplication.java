@@ -1,20 +1,22 @@
 package sk.mysterum.backend;
 
+<<<<<<< HEAD
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+=======
+>>>>>>> 4dda75ec332717c356dc8411c8687af54c54d3f5
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import sk.mysterum.backend.services.MailService;
 
 import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 
 @EnableJpaRepositories
 @SpringBootApplication
 public class BackendApplication {
 
 	private static boolean isFirstTime = true;
-
 
 	public static void main(String[] args) throws MessagingException {
 
@@ -50,8 +52,6 @@ public class BackendApplication {
 			isFirstTime = false;
 		}
 		SpringApplication.run(BackendApplication.class, args);
-		
-
 	}
 
 }
