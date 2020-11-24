@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import sk.mysterum.backend.exception.UserAlreadyExistsException;
 import sk.mysterum.backend.exception.UserDoesNotExistException;
 import sk.mysterum.backend.exception.WindowAlreadyOpenedException;
 import sk.mysterum.backend.requestmodel.Response;
@@ -21,6 +22,11 @@ public class UserExceptionHandler {
     @ExceptionHandler(UserDoesNotExistException.class)
     public ResponseEntity<Response> handleUserDoesNotExistException(UserDoesNotExistException exception) {
         return new ResponseEntity<>(new Response(exception.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<Response> handleUserAlreadyExistsException(UserAlreadyExistsException exception) {
+        return new ResponseEntity<>(new Response(exception.getMessage()), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(InvalidAttributeIdentifierException.class)
