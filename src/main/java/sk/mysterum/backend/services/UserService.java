@@ -32,7 +32,7 @@ public class UserService {
     public List<Integer> getOpenedWindows(String name) {
         List<UserModel> users = userRepository.findByNameEquals(name);
         if (users.isEmpty()) {
-            return null;
+            return new ArrayList<>();
         }
 
         UserModel targetUser = users.get(0);

@@ -24,4 +24,12 @@ public class Window {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    @Override
+    public String toString() {
+        return "Window{" +
+                "day=" + day +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
 }

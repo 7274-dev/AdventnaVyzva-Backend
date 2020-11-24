@@ -13,7 +13,7 @@ import sk.mysterum.backend.exception.FileAlreadyExistsException;
 public class FileController {
 
     @Autowired
-    FileService fileService;
+    private FileService fileService;
 
 //    @GetMapping("/")
 //    public String index(){return "upload";}

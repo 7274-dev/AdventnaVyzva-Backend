@@ -28,6 +28,7 @@ public class UserController {
     @GetMapping("/windows")
     public GenericResponse<List<Integer>> getWindowsOpened(@RequestParam String userName) throws UserDoesNotExistException {
         List<Integer> openedWindows = service.getOpenedWindows(userName);
+
         if (openedWindows == null) {
             throw new UserDoesNotExistException();
         }
