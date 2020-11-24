@@ -54,6 +54,7 @@ public class BackendApplication {
 		String path = Test.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		try {
 			String decodedPath = URLDecoder.decode(path, "UTF-8");
+			System.out.println(decodedPath);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
