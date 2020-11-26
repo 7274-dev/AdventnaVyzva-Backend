@@ -3,7 +3,9 @@ package sk.mysterum.backend.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sk.mysterum.backend.requestmodel.ExerciseFile;
+import sk.mysterum.backend.requestmodel.GenericResponse;
+
 import sk.mysterum.backend.services.FileService;
 
 import sk.mysterum.backend.exception.FileAlreadyExistsException;
@@ -15,14 +17,12 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-//    @GetMapping("/")
-//    public String index(){return "upload";}
 
     @PostMapping("/upload")
-    public String uploadFile(@RequestPart ("File") MultipartFile file, RedirectAttributes redirectAttributes) throws FileAlreadyExistsException {
+    public GenericResponse<String> uploadFile(@RequestParam("name") String personName, @RequestParam("day") int personDay, @RequestPart ("File") MultipartFile file, @RequestBody ExerciseFile exerciseFile) throws FileAlreadyExistsException {
 
-        fileService.uploadFile(file);
-        return "File uploaded";
+        fileService.uploadFile(file, personName, personDay);
+        return new GenericResponse<>("File Uploaded");
 
     }
 }

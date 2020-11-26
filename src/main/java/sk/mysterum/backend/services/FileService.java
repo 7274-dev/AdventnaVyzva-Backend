@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import sk.mysterum.backend.exception.FileAlreadyExistsException;
 
+import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import java.io.File;
 import java.nio.file.Files;
@@ -21,18 +22,29 @@ public class FileService {
 
     @Value("${app.upload.dir:${user.home}}")
     public String uploadDir;
+    private MailService mail = new MailService();
 
-    public Boolean uploadFile(MultipartFile file) throws FileAlreadyExistsException {
+
+
+
+
+    public Boolean uploadFile(MultipartFile file, String personName, int day) throws FileAlreadyExistsException {
         try{
             String filePath = file.getResource().getFile().getPath();
             Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(filePath));
             Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            sendMail(copyLocation.toString(), personName, day);
+
             return true;
             
         }catch (Exception e){ throw new FileAlreadyExistsException();}
 
-
-
     }
 
+    private void sendMail(String copyLocation, String personName, int day) throws MessagingException {
+
+        mail.sendMessage("mail_address_to_teacher", copyLocation, personName, day);
+
+    }
 }

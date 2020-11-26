@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import sk.mysterum.backend.exception.FileAlreadyExistsException;
 import sk.mysterum.backend.exception.WrongPasswordException;
-import sk.mysterum.backend.requestmodel.Response;
+import sk.mysterum.backend.requestmodel.GenericResponse;
 
 @RestControllerAdvice
 public class FIleAlreadyExistsExceptionHandler {
 
 
     @ExceptionHandler(FileAlreadyExistsException.class)
-    public ResponseEntity<Response> handleWrongPasswordException(WrongPasswordException e){
-        return new ResponseEntity<Response>(new Response("File Already Exists"), HttpStatus.UNPROCESSABLE_ENTITY);
+    public ResponseEntity<GenericResponse<String>> handleWrongPasswordException(WrongPasswordException e){
+        return new ResponseEntity<>(new GenericResponse<>("File Already Exists"), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }

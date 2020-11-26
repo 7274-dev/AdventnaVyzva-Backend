@@ -11,24 +11,16 @@ public class SelfDestructClient {
     private static final int SERVER_PORT = 4999;
 
     public static void main(String[] args) throws IOException {
+
         Socket socket = new Socket(SERVER_IP, SERVER_PORT);
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         BufferedReader key = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        PrintWriter out = new PrintWriter(socket.getOutputStream());
 
-        while (true) {
+        String serverResponse = input.readLine();
 
-            String command = key.readLine();
-
-            out.println(command);
-
-            String serverResponse = in.readLine();
-            System.out.println(serverResponse);
-
-            //TODO FINISH RESPONSE
-
-            socket.close();
-        }
+        socket.close();
     }
+
 }

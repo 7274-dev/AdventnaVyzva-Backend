@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sk.mysterum.backend.exception.WrongPasswordException;
 import sk.mysterum.backend.requestmodel.Day;
-import sk.mysterum.backend.requestmodel.Response;
+import sk.mysterum.backend.requestmodel.GenericResponse;
 import sk.mysterum.backend.model.TextModel;
 import sk.mysterum.backend.services.TextService;
 
@@ -19,8 +19,8 @@ public class TextController {
     public static final String PASSWORD = "KUBOJESUPER";
 
     @GetMapping("/text")
-    public Response getTextForDay(@RequestParam int day) {
-            return new Response(srvc.getTextByDay(day).get(0).getText());
+    public GenericResponse<String> getTextForDay(@RequestParam int day) {
+            return new GenericResponse<>(srvc.getTextByDay(day).get(0).getText());
     }
 
     @PostMapping("/db")

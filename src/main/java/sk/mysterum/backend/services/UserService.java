@@ -75,4 +75,61 @@ public class UserService {
         UserModel model = userRepository.findByNameEquals(username).get(0);
         openWindow(model.getId(), day);
     }
+
+    public String getNameOfCountryByInt(int dayNumber){
+
+        switch (dayNumber){
+            case 1:
+                return "Norway";
+            case 2:
+                return "Norway";
+            case 3:
+                return "Sweden";
+            case 4:
+                return "Sweden";
+            case 5:
+                return "Denmark";
+            case 6:
+                return "Denmark";
+            case 7:
+                return "Denmark";
+            case 8:
+                return "Denmark";
+            case 9:
+                return "Germany";
+            case 10:
+                return "Czechia";
+            case 11:
+                return "Slovakia";
+            case 12:
+                return "Slovakia";
+            case 13:
+                return "Hungary";
+            case 14:
+                return "Austria";
+            case 15:
+                return "Italy";
+            case 16:
+                return "Croatia";
+            case 17:
+                return "Greece";
+            case 18:
+                return "Turkey";
+            case 19:
+                return "Turkey";
+            case 20:
+                return "Turkey";
+            case 21:
+                return "Israel";
+            case 22:
+                return "Israel";
+            case 23:
+                return "Bethlehem";
+            case 24:
+                return "JESUSSSS";
+        }
+
+
+        return "Invalid day";
+    }
 }

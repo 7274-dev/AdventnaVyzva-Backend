@@ -2,11 +2,13 @@ package sk.mysterum.backend;
 
 import org.aspectj.weaver.ast.Test;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.util.StringUtils;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
@@ -18,7 +20,8 @@ import java.net.URLDecoder;
 public class BackendApplication {
 
 	private static boolean isFirstTime = true;
-
+	@Value("${app.upload.dir:${user.home}}")
+	public String uploadDir;
 
 	public static void main(String[] args) throws MessagingException, UnsupportedEncodingException {
 

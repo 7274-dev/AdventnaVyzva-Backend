@@ -43,11 +43,11 @@ public class MailService {
         multipart.addBodyPart(messageBodyPart);
 
 
-//        messageBodyPart = new MimeBodyPart();
-//        DataSource source = new FileDataSource(locationToFile);
-//        messageBodyPart.setDataHandler(new DataHandler(source));
-//        messageBodyPart.setFileName(personName+ " " + day + ".png");
-//        multipart.addBodyPart(messageBodyPart);
+        messageBodyPart = new MimeBodyPart();
+        DataSource source = new FileDataSource(locationToFile);
+        messageBodyPart.setDataHandler(new DataHandler(source));
+        messageBodyPart.setFileName(personName+ " " + day + ".png");
+        multipart.addBodyPart(messageBodyPart);
 
         message.setContent(multipart);
         return message;
