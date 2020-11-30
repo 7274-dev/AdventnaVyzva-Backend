@@ -5,16 +5,15 @@ package sk.mysterum.backend.services;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 import sk.mysterum.backend.exception.FileAlreadyExistsException;
 
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import java.io.File;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 
 
 @Service
@@ -24,27 +23,49 @@ public class FileService {
     public String uploadDir;
     private MailService mail = new MailService();
 
+    public void uploadFile(File file, String personName, int day) throws FileAlreadyExistsException {
+        String filePath = file.getPath();
+        Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(filePath));
+        try {
+            Files.copy(new FileInputStream(file), copyLocation, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-
-
-
-    public Boolean uploadFile(MultipartFile file, String personName, int day) throws FileAlreadyExistsException {
-        try{
-            String filePath = file.getResource().getFile().getPath();
-            Path copyLocation = Paths.get(uploadDir + File.separator + StringUtils.cleanPath(filePath));
-            Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
-
+        try {
             sendMail(copyLocation.toString(), personName, day);
-
-            return true;
-            
-        }catch (Exception e){ throw new FileAlreadyExistsException();}
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
 
     }
 
     private void sendMail(String copyLocation, String personName, int day) throws MessagingException {
-
         mail.sendMessage("mail_address_to_teacher", copyLocation, personName, day);
 
+    }
+
+    public File dataToFile(Byte[] data, String fileName) throws IOException {
+        System.out.println(Arrays.toString(data));
+        if (data == null) {
+            return null;
+        }
+        File file = new File(fileName);
+
+        // make sure it exists
+        file.createNewFile();
+
+        byte[] arr = new byte[data.length];
+        // fuck
+        for (int i = 0; i < data.length; i++) {
+            arr[i] = data[i];
+        }
+
+        FileOutputStream stream = new FileOutputStream(file);
+        stream.write(arr);
+        stream.flush();
+        stream.close();
+
+        return file;
     }
 }

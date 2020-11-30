@@ -4,10 +4,21 @@ package sk.mysterum.backend.requestmodel;
 public class ExerciseFile {
     private Integer day;
     private String userName;
+    private Byte[] data;
+    private String filename;
 
-    public ExerciseFile(int day, String userName) {
+    public ExerciseFile(Integer day, String userName, Byte[] data, String filename) {
         this.day = day;
         this.userName = userName;
+        this.data = data;
+        this.filename = filename;
+    }
+
+    public ExerciseFile() {
+        this.day = null;
+        this.userName = null;
+        this.data = null;
+        this.filename = null;
     }
 
     public int getDay() {
@@ -26,8 +37,23 @@ public class ExerciseFile {
         this.userName = userName;
     }
 
-    public ExerciseFile() {
-        this.day = null;
-        this.userName = null;
+    public void setDay(Integer day) {
+        this.day = day;
+    }
+
+    public Byte[] getData() {
+        return data;
+    }
+
+    public void setData(Byte[] data) {
+        this.data = data;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }

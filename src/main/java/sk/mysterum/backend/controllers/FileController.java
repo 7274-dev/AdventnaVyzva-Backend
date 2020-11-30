@@ -10,6 +10,9 @@ import sk.mysterum.backend.services.FileService;
 
 import sk.mysterum.backend.exception.FileAlreadyExistsException;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
+
 @RestController
 @CrossOrigin
 public class FileController {
@@ -19,9 +22,13 @@ public class FileController {
 
 
     @PostMapping("/upload")
-    public GenericResponse<String> uploadFile(@RequestParam("name") String personName, @RequestParam("day") int personDay, @RequestPart ("File") MultipartFile file, @RequestBody ExerciseFile exerciseFile) throws FileAlreadyExistsException {
-
-        fileService.uploadFile(file, personName, personDay);
+    public GenericResponse<String> uploadFile(@RequestBody ExerciseFile exerciseFile) throws FileAlreadyExistsException, MessagingException {
+        try {
+            fileService.uploadFile(fileService.dataToFile(exerciseFile.getData(), exerciseFile.getFilename()), exerciseFile.getUserName(), exerciseFile.getDay());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new GenericResponse<>("There was an error while uploading your file: " + e.getMessage());
+        }
         return new GenericResponse<>("File Uploaded");
 
     }
