@@ -15,6 +15,7 @@ public class TextService {
     public List<TextModel> getTextByDay(Integer day){
         return repository.findByDay(day);
     }
+
     public TextModel addDay(Integer day, String content){
 
         TextModel model = new TextModel();

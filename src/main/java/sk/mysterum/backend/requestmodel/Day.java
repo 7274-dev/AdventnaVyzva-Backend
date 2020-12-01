@@ -1,6 +1,6 @@
 package sk.mysterum.backend.requestmodel;
 
-public class Day {
+public class  Day {
     private String body;
     private String password;
     private Integer day;

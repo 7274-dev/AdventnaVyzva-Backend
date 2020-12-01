@@ -41,7 +41,7 @@ public class FileService {
     }
 
     private void sendMail(String copyLocation, String personName, int day) throws MessagingException {
-        mail.sendMessage("mail_address_to_teacher", copyLocation, personName, day);
+        mail.sendMessage("jtulek@at-rt.com", copyLocation, personName, day);
 
     }
 
