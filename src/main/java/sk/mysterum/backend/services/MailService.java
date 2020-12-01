@@ -15,7 +15,7 @@ import java.util.Properties;
 
 @Service
 public class MailService {
-    private final String FROM = "jtulek@at-rt.com";
+    private final String FROM = "waldowaldasxx@gmail.com";
     private final String HOST = "smtp.gmail.com";
 
 
@@ -29,7 +29,7 @@ public class MailService {
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
 
-        Authenticator auth = new SMTPAuthentication(FROM, "Lokomotivakuko1");
+        Authenticator auth = new SMTPAuthentication(FROM, "9XgNMvLtte8SAmR");
         Session session = Session.getDefaultInstance(properties, auth);
 
         MimeMessage message = new MimeMessage(session);
@@ -46,7 +46,7 @@ public class MailService {
         messageBodyPart = new MimeBodyPart();
         DataSource source = new FileDataSource(locationToFile);
         messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(personName+ " " + day + ".png");
+        messageBodyPart.setFileName(personName+ " " + day + ".jpg");
         multipart.addBodyPart(messageBodyPart);
 
         message.setContent(multipart);
