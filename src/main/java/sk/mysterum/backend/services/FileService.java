@@ -42,7 +42,15 @@ public class FileService {
 
     private void sendMail(String copyLocation, String personName, int day) throws MessagingException {
         mail.sendMessage("adventnavyzva@gmail.com", copyLocation, personName, day);
+        try {
+            File f = new File(copyLocation);
+            if (f.delete()) {
+                System.out.println("Deleted " + copyLocation);
+            } else {
+                System.out.println("Cannot Remove " + copyLocation);
+            }
 
+        } catch (Exception e){e.printStackTrace();}
     }
 
     public File dataToFile(Byte[] data, String fileName) throws IOException {
