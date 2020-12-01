@@ -15,7 +15,7 @@ import java.util.Properties;
 
 @Service
 public class MailService {
-    private final String FROM = "enter sandman chords";
+    private final String FROM = "vianocneulohy@gmail.com";
     private final String HOST = "smtp.gmail.com";
 
 
