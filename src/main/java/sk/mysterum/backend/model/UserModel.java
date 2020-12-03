@@ -12,6 +12,24 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private boolean hasOpenedChallenge;
+    private boolean hasOpenedSite;
+
+    public boolean isHasOpenedChallenge() {
+        return hasOpenedChallenge;
+    }
+
+    public void setHasOpenedChallenge(boolean hasOpenedChallenge) {
+        this.hasOpenedChallenge = hasOpenedChallenge;
+    }
+
+    public boolean isHasOpenedSite() {
+        return hasOpenedSite;
+    }
+
+    public void setHasOpenedSite(boolean hasOpenedSite) {
+        this.hasOpenedSite = hasOpenedSite;
+    }
 
     public UserModel(Long id, String name) {
         this.id = id;
@@ -42,7 +60,10 @@ public class UserModel {
     @Override
     public String toString() {
         return "UserModel{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", hasOpenedChallenge=" + hasOpenedChallenge +
+                ", hasOpenedSite=" + hasOpenedSite +
                 '}';
     }
 }
