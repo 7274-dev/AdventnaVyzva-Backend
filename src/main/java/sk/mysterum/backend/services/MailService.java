@@ -29,7 +29,7 @@ public class MailService {
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
 
-        Authenticator auth = new SMTPAuthentication(FROM, "Dextronko1");
+        Authenticator auth = new SMTPAuthentication(FROM, "psswrd");
         Session session = Session.getDefaultInstance(properties, auth);
 
         MimeMessage message = new MimeMessage(session);
@@ -46,7 +46,6 @@ public class MailService {
         messageBodyPart = new MimeBodyPart();
         DataSource source = new FileDataSource(locationToFile);
         messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(personName+ " " + day + ".jpg");
         multipart.addBodyPart(messageBodyPart);
 
         message.setContent(multipart);
