@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import sk.mysterum.backend.exception.FileAlreadyExistsException;
+import sk.mysterum.backend.exception.FileDoesntExistException;
 
 import javax.mail.MessagingException;
 import java.io.*;
@@ -34,13 +35,13 @@ public class FileService {
 
         try {
             sendMail(copyLocation.toString(), personName, day);
-        } catch (MessagingException e) {
+        } catch (MessagingException | FileDoesntExistException e) {
             e.printStackTrace();
         }
 
     }
 
-    private void sendMail(String copyLocation, String personName, int day) throws MessagingException {
+    private void sendMail(String copyLocation, String personName, int day) throws MessagingException, FileDoesntExistException {
         mail.sendMessage("adventnavyzva@gmail.com", copyLocation, personName, day);
         try {
             File f = new File(copyLocation);

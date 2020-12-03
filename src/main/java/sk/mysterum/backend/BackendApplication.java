@@ -11,8 +11,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.util.StringUtils;
 
 import javax.mail.MessagingException;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 @EnableJpaRepositories
@@ -58,7 +61,7 @@ public class BackendApplication {
 			isFirstTime = false;
 		}
 
-		SpringApplication.run(BackendApplication.class, args);
+		//SpringApplication.run(BackendApplication.class, args);
 	}
 
 }

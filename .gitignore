@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### PASSSWORDS ###
+/src/main/**/pswrd.txt

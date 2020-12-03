@@ -1,6 +1,8 @@
 package sk.mysterum.backend.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.mysterum.backend.exception.FileDoesntExistException;
 import sk.mysterum.backend.mail.SMTPAuthentication;
 
 import javax.activation.DataHandler;
@@ -11,6 +13,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 @Service
@@ -19,8 +24,12 @@ public class MailService {
     private final String HOST = "smtp.gmail.com";
 
 
+    @Autowired
+    LoadPassword pwd;
 
-    private Message createMessage(String to, String locationToFile, String personName, Integer day) throws MessagingException{
+
+
+    private Message createMessage(String to, String locationToFile, String personName, Integer day) throws MessagingException, FileDoesntExistException {
 
         // Set up mail server and get default session object
         Properties properties = System.getProperties();
@@ -29,7 +38,7 @@ public class MailService {
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
 
-        Authenticator auth = new SMTPAuthentication(FROM, "psswrd");
+        Authenticator auth = new SMTPAuthentication(FROM, pwd.getPassword(buildPathToFile("pswrd.txt")));
         Session session = Session.getDefaultInstance(properties, auth);
 
         MimeMessage message = new MimeMessage(session);
@@ -52,10 +61,19 @@ public class MailService {
         return message;
     }
 
-    public void sendMessage(String to, String locationToFile, String personName, Integer day) throws MessagingException {
+    public void sendMessage(String to, String locationToFile, String personName, Integer day) throws MessagingException, FileDoesntExistException {
        Message message = createMessage(to, locationToFile, personName, day);
        Transport.send(message);
         System.out.println("Message Sent");
+    }
+
+    private String buildPathToFile(String filename){
+        Path currentRelativePath = Paths.get("");
+        String absPath = currentRelativePath.toAbsolutePath().toString();
+
+        String path = absPath + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator +
+                      "sk" + File.separator + "mysterum" + File.separator + "backend" + File.separator + filename;
+        return null;
     }
 
 }
