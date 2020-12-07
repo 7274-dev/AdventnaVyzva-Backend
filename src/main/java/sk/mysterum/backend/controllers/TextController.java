@@ -16,11 +16,18 @@ public class TextController {
     @Autowired
     private TextService srvc;
 
+    private Integer latestVersion = 12;
+
     public static final String PASSWORD = "KUBOJESUPER";
 
     @GetMapping("/text")
     public GenericResponse<String> getTextForDay(@RequestParam int day) {
             return new GenericResponse<>(srvc.getTextByDay(day).get(0).getText());
+    }
+
+    @GetMapping("/ver")
+    public GenericResponse<Integer> getLatestVersion(){
+        return new GenericResponse<Integer>(latestVersion);
     }
 
     @PostMapping("/db")
