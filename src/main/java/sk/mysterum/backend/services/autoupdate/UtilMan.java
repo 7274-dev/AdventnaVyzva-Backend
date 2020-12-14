@@ -3,10 +3,10 @@ package sk.mysterum.backend.services.autoupdate;
 import org.springframework.beans.factory.annotation.Value;
 
 public class UtilMan {
-    //This code will only look for the file in the home directory
+
+
     //ONLY FOR LINUX
-    @Value("${app.upload.dir:${user.home}}")
-    private String homeDir;
+
 
     private static String OS = null;
 
