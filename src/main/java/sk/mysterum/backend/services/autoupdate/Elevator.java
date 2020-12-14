@@ -1,8 +1,6 @@
 package sk.mysterum.backend.services.autoupdate;
 
-import org.springframework.beans.factory.annotation.Value;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
